@@ -20,6 +20,7 @@
         "MACHINE ='raspberrypi4-64'",
 		"INHERIT+='rm_work'",
 		"IMAGE_FEATURES:append = 'ssh-server-dropbear debug-tweaks'",
+		"ENABLE_UART = '1'"
 		// "KERNEL_DEVICETREE = broadcom/bcm2711-rpi-4-b.dtb"
 	],
 
