@@ -21,7 +21,6 @@
 		"INHERIT+='rm_work'",
 		"IMAGE_FEATURES:append = 'ssh-server-dropbear debug-tweaks'",
 		"ENABLE_UART = '1'"
-		// "KERNEL_DEVICETREE = broadcom/bcm2711-rpi-4-b.dtb"
 	],
 
 	"builds" : {
@@ -53,7 +52,6 @@
 				"meta-mender/meta-mender-core",
 				"meta-mender-community/meta-mender-raspberrypi"
 			]
-
 		}
 	}
 }
