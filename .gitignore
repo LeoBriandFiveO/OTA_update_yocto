@@ -1,0 +1,6 @@
+.cookerconfig
+builds/
+downloads/
+layers/
+sstate-cache/
+
