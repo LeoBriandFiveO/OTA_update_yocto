@@ -43,7 +43,7 @@
 				"MENDER_ARTIFACT_NAME = 'rpi4-release-1'",
 				"ARTIFACTIMG_FSTYPE = 'ext4'",
 				"MENDER_SERVER_URL = 'https://hosted.mender.io'",
-				"MENDER_TENANT_TOKEN = 'mnwipwETWUfHaRsYGuGjHTyDKjZ6Zx354Ds4r8xkImA'",
+				"MENDER_TENANT_TOKEN = '<YOUR_TOKEN>'",
 				"MENDER_BOOT_PART_SIZE_MB = '64'",
 				"MENDER_STORAGE_TOTAL_SIZE_MB = '4096'"
 			],
