@@ -1,0 +1,58 @@
+{
+	"sources" : [
+		{ "url": "https://git.yoctoproject.org/poky/", "branch": "scarthgap", "rev":"f43f393ef0246b7bee6eed8bcf8271cf2b8cdf40", "dir":"poky/"},
+		{ "url": "https://github.com/openembedded/meta-openembedded.git", "branch": "scarthgap","rev":"80e01188fa822d87d301ee71973c462d7a865493", "dir":"meta-openembedded"},
+		{ "url": "https://github.com/agherzan/meta-raspberrypi.git", "branch": "scarthgap","rev":"6df7e028a2b7b2d8cab0745dc0ed2eebc3742a17", "dir":"meta-raspberrypi"},
+		{ "url": "https://github.com/mendersoftware/meta-mender.git", "branch": "scarthgap","rev":"04533eccfbd7c273ace54e83c8bc5019e609596c", "dir":"meta-mender"},
+		{ "url": "https://github.com/rauc/meta-rauc.git", "branch": "scarthgap","rev":"76b97796be1d0303436835e56d85d7316a1029d9", "dir":"meta-rauc"},
+		{ "url": "https://github.com/sbabic/meta-swupdate.git", "branch": "scarthgap","rev":"d598d4e675b541301ea1dfc8f0c8931983b4dcd0", "dir":"meta-swupdate"},
+		{ "url": "https://github.com/mendersoftware/meta-mender-community.git", "branch": "scarthgap","rev":"1d3da076790be522425e0a62fd1e51164f5593b7", "dir":"meta-mender-community"}
+	],
+
+	"layers" : [
+		"poky/meta",
+		"poky/meta-poky",
+		"meta-raspberrypi",
+		"meta-openembedded/meta-oe"
+	],
+
+	"local.conf": [
+        "MACHINE ='raspberrypi4-64'",
+		"INHERIT+='rm_work'",
+		"IMAGE_FEATURES:append = 'ssh-server-dropbear debug-tweaks'",
+		// "KERNEL_DEVICETREE = broadcom/bcm2711-rpi-4-b.dtb"
+	],
+
+	"builds" : {
+
+		"mender": {
+			"notes" : [
+				"The `core-image-minimal` image with mender"
+			],
+
+			"target" : "core-image-minimal",
+
+			"local.conf": [
+				"INHERIT += 'mender-full'",
+				"DISTRO_FEATURES:append = ' systemd'",
+				"VIRTUAL-RUNTIME_init_manager = 'systemd'",
+				"INIT_MANAGER = 'systemd'",
+				"DISTRO_FEATURES_BACKFILL_CONSIDERED = 'sysvinit'",
+				"VIRTUAL-RUNTIME_initscripts:remove = 'systemd-compat-units'",
+				"MENDER_ARTIFACT_NAME = 'rpi4-release-1'",
+				"ARTIFACTIMG_FSTYPE = 'ext4'",
+				"MENDER_SERVER_URL = 'https://hosted.mender.io'",
+				"MENDER_TENANT_TOKEN = 'mnwipwETWUfHaRsYGuGjHTyDKjZ6Zx354Ds4r8xkImA'",
+				"MENDER_BOOT_PART_SIZE_MB = '64'",
+				"MENDER_STORAGE_TOTAL_SIZE_MB = '4096'"
+			],
+
+			"layers" : [
+				"meta-mender/meta-mender-demo",
+				"meta-mender/meta-mender-core",
+				"meta-mender-community/meta-mender-raspberrypi"
+			]
+
+		}
+	}
+}
